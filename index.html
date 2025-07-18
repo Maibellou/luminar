@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cortinas de cristal, mamparas para baños y cerramientos perimetrales para piscinas. Instalación profesional en toda Argentina.">
+    <meta name="keywords"
+        content="cortinas de cristal, mamparas baños, cerramientos piscinas, instalación profesional, Argentina">
+    <meta name="author" content="Luminar">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ocre': '#efb810',
+                        'ocre-dark': '#bfa00a',
+                        'dark': '#1a1a1a',
+                        'darker': '#0f0f0f'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>Luminar - Cortinas de Cristal y Cerramientos | Argentina</title>
+</head>
+
+<body class="bg-dark text-white font-['Inter']">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-black z-50 border-b border-ocre/20">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="logo">
+                    <img src="../src/logotipo.png" alt="Luminar Logo" class="h-12 md:h-14 object-contain">
+                </div>
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#portada" class="nav-link text-white hover:text-ocre transition-colors text-xl">Inicio</a></li>
+                    <li><a href="#servicios" class="nav-link text-white hover:text-ocre transition-colors text-xl">Servicios</a>
+                    </li>
+                    <li><a href="#beneficios"
+                            class="nav-link text-white hover:text-ocre transition-colors text-xl">Beneficios</a></li>
+                    <li><a href="#nosotros" class="nav-link text-white hover:text-ocre transition-colors text-xl">Nosotros</a>
+                    </li>
+                    <li><a href="#contacto" class="nav-link text-white hover:text-ocre transition-colors text-xl">Contacto</a>
+                    </li>
+                </ul>
+                <div class="hamburger md:hidden">
+                    <span class="bar block w-6 h-0.5 bg-white mb-1"></span>
+                    <span class="bar block w-6 h-0.5 bg-white mb-1"></span>
+                    <span class="bar block w-6 h-0.5 bg-white"></span>
+                </div>
+                <div class="close-menu hidden md:hidden absolute top-4 right-4 text-white text-3xl cursor-pointer z-50">
+                    <span>&times;</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- 1. Portada -->
+        <section id="portada" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+            <div class="hero-background absolute inset-0">
+                <img src="../src/portada.png" alt="Portada Luminar" class="w-full h-full object-cover" />
+            </div>
+            <div class="hero-content relative z-20 text-center px-4 max-w-4xl mx-auto">
+                <div class="hero-text">
+                    <h2 class="hero-title text-5xl md:text-7xl font-bold text-white mb-6">
+                        Espacios más <span class="text-ocre">luminosos</span>, modernos y seguros
+                    </h2>
+                    <p class="hero-subtitle text-xl md:text-2xl text-gray-300 mb-8">
+                        Especialistas en cortinas de cristal, mamparas para baños y cerramientos perimetrales para
+                        piscinas
+                    </p>
+                    <button
+                        class="cta-button bg-ocre hover:bg-ocre-dark text-white font-semibold py-4 px-8 rounded-lg text-lg transition-colors transform hover:scale-105"
+                        onclick="scrollToContact()">
+                        Solicitá tu cotización
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Servicios -->
+        <section id="servicios" class="py-20 bg-darker">
+            <div class="container mx-auto px-4">
+                <div class="services-intro text-center mb-16">
+                    <h2 class="section-title text-4xl md:text-5xl font-bold text-ocre mb-6">Nuestros Servicios</h2>
+                    <p class="section-description text-xl text-gray-300 max-w-3xl mx-auto">
+                        Ofrecemos instalación profesional con atención personalizada, utilizando materiales de la más
+                        alta calidad.
+                        Cada proyecto es único y nos adaptamos a tus necesidades específicas.
+                    </p>
+                </div>
+
+                <div class="services-tabs">
+                    <div class="tab-buttons flex flex-wrap justify-center gap-4 mb-8">
+                        <button
+                            class="tab-button active bg-ocre text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full md:w-auto text-center"
+                            data-tab="cortinas">Cortinas de Cristal</button>
+                        <button
+                            class="tab-button bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full md:w-auto text-center"
+                            data-tab="mamparas">Mamparas para Baños</button>
+                        <button
+                            class="tab-button bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full md:w-auto text-center"
+                            data-tab="cerramientos">Cerramientos Piscinas</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <!-- Cortinas de Cristal -->
+                        <div class="tab-panel active" id="cortinas">
+                            <div class="service-content grid md:grid-cols-2 gap-12 items-center">
+                                <div class="service-text">
+                                    <h3 class="text-3xl font-bold text-ocre mb-6">Cortinas de Cristal</h3>
+                                    <p class="text-gray-300 text-lg mb-6">Nuestras cortinas de cristal transforman
+                                        cualquier espacio, creando ambientes luminosos y elegantes.
+                                        Perfectas para balcones, terrazas y espacios exteriores, ofrecen protección
+                                        contra el viento y la lluvia
+                                        sin perder la conexión visual con el exterior.</p>
+                                    <ul class="service-features space-y-3">
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Instalación profesional</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Materiales de alta calidad</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Diseños a medida</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Garantía extendida</li>
+                                    </ul>
+                                </div>
+                                <div class="service-image">
+                                    <img src="../src/cortinadecristal.jpg" alt="Cortinas de cristal instaladas"
+                                        class="w-full rounded-lg" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mamparas para Baños -->
+                        <div class="tab-panel hidden" id="mamparas">
+                            <div class="service-content grid md:grid-cols-2 gap-12 items-center">
+                                <div class="service-text">
+                                    <h3 class="text-3xl font-bold text-ocre mb-6">Mamparas para Baños</h3>
+                                    <p class="text-gray-300 text-lg mb-6">Diseños modernos y funcionales que combinan
+                                        estética y practicidad. Nuestras mamparas para baños
+                                        están diseñadas para maximizar el espacio y crear ambientes elegantes.
+                                        Disponibles en diferentes
+                                        estilos y acabados para adaptarse a cualquier decoración.</p>
+                                    <ul class="service-features space-y-3">
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Diseño moderno y funcional</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Fácil instalación</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Resistente a la humedad</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Múltiples acabados disponibles</li>
+                                    </ul>
+                                </div>
+                                <div class="service-image">
+                                    <img src="../src/mamparas.png" alt="Mamparas para baños modernas"
+                                        class="w-full rounded-lg" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cerramientos Piscinas -->
+                        <div class="tab-panel hidden" id="cerramientos">
+                            <div class="service-content grid md:grid-cols-2 gap-12 items-center">
+                                <div class="service-text">
+                                    <h3 class="text-3xl font-bold text-ocre mb-6">Cerramientos Perimetrales para
+                                        Piscinas</h3>
+                                    <p class="text-gray-300 text-lg mb-6">Enfatizamos la seguridad, estética y
+                                        resistencia en nuestros cerramientos perimetrales.
+                                        Protegen a niños y mascotas mientras mantienen la belleza de tu piscina.
+                                        Fabricados con materiales
+                                        de alta resistencia y durabilidad.</p>
+                                    <ul class="service-features space-y-3">
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Máxima seguridad</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Resistencia extrema</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Estética moderna</li>
+                                        <li class="flex items-center text-gray-300"><img src="../src/check.png" alt="Check" class="w-5 mr-3 object-contain"> Cumple normativas de seguridad</li>
+                                    </ul>
+                                </div>
+                                <div class="service-image">
+                                    <img src="../src/carramientopiscina.jpg"
+                                        alt="Cerramientos perimetrales para piscinas" class="w-full rounded-lg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Beneficios -->
+        <section id="beneficios" class="py-20 bg-dark">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-4xl md:text-5xl font-bold text-ocre text-center mb-16">¿Por qué elegir
+                    nuestras cortinas de cristal?</h2>
+                <div class="benefits-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                        <div class="benefit-icon text-4xl mb-4">👷</div>
+                        <h3 class="text-xl font-bold text-ocre mb-4">Instalación Profesional</h3>
+                        <p class="text-gray-300">Equipo técnico especializado con años de experiencia en el sector.</p>
+                    </div>
+                    <div
+                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                        <div class="benefit-icon text-4xl mb-4">🛡️</div>
+                        <h3 class="text-xl font-bold text-ocre mb-4">Garantía Extendida</h3>
+                        <p class="text-gray-300">Respaldamos nuestro trabajo con garantías completas en materiales e
+                            instalación.</p>
+                    </div>
+                    <div
+                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                        <div class="benefit-icon text-4xl mb-4">💬</div>
+                        <h3 class="text-xl font-bold text-ocre mb-4">Asesoramiento Personalizado</h3>
+                        <p class="text-gray-300">Te acompañamos en cada paso, desde el diseño hasta la instalación
+                            final.</p>
+                    </div>
+                    <div
+                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                        <div class="benefit-icon text-4xl mb-4">🎨</div>
+                        <h3 class="text-xl font-bold text-ocre mb-4">Diseños a Medida</h3>
+                        <p class="text-gray-300">Cada proyecto es único, adaptamos las soluciones a tus necesidades
+                            específicas.</p>
+                    </div>
+                    <div
+                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                        <div class="benefit-icon text-4xl mb-4">✨</div>
+                        <h3 class="text-xl font-bold text-ocre mb-4">Estética Moderna</h3>
+                        <p class="text-gray-300">Diseños contemporáneos que se integran perfectamente con cualquier
+                            estilo.</p>
+                    </div>
+                    <div
+                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                        <div class="benefit-icon text-4xl mb-4">⚡</div>
+                        <h3 class="text-xl font-bold text-ocre mb-4">Fácil Instalación</h3>
+                        <p class="text-gray-300">Proceso rápido y eficiente, sin interrumpir tu rutina diaria.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Quiénes Somos -->
+                <section id="nosotros" class="py-20 bg-darker">
+            <div class="container mx-auto px-4">
+                <div class="about-content grid md:grid-cols-2 gap-12 items-start">
+                    <div class="about-text">
+                        <h2 class="section-title text-4xl md:text-5xl font-bold text-ocre mb-8">Quiénes Somos</h2>
+                        <p class="about-description text-lg text-gray-300 mb-8">
+                            Somos una empresa especializada en la fabricación e instalación de cortinas de cristal, 
+                            mamparas para baños y cerramientos perimetrales para piscinas. Nos dedicamos a transformar espacios residenciales y comerciales, 
+                            creando ambientes que combinan funcionalidad, estética y durabilidad.
+                        </p>
+                    </div>
+                    <div class="about-text">
+                        <div class="mission-vision space-y-8">
+                            <div class="mission">
+                                <h3 class="text-2xl font-bold text-ocre mb-4">Misión</h3>
+                                <p class="text-gray-300">Transformar espacios creando ambientes más luminosos, modernos
+                                    y seguros,
+                                    ofreciendo soluciones de calidad que superen las expectativas de nuestros clientes.
+                                </p>
+                            </div>
+                            <div class="vision">
+                                <h3 class="text-2xl font-bold text-ocre mb-4">Visión</h3>
+                                <p class="text-gray-300">Ser la empresa líder en Argentina en soluciones de cristal y
+                                    cerramientos,
+                                    reconocida por la excelencia en el servicio y la innovación en el diseño.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Contacto / Cotización -->
+        <section id="contacto" class="py-20 bg-dark">
+            <div class="container mx-auto px-4">
+                <div class="contact-content grid lg:grid-cols-2 gap-12">
+                    <div class="contact-form-container md:border-r md:border-ocre/30 md:pr-8">
+                        <h2 class="section-title text-4xl md:text-5xl font-bold text-ocre mb-4">Cotización</h2>
+                        <form class="contact-form space-y-4" id="contactForm">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="nombre" class="block text-white font-semibold mb-1">Nombre completo
+                                        *</label>
+                                    <input type="text" id="nombre" name="nombre" required
+                                        class="w-full px-3 py-2 bg-darker border border-gray-600 rounded-lg text-white focus:border-ocre focus:outline-none">
+                                </div>
+                                <div class="form-group">
+                                    <label for="whatsapp" class="block text-white font-semibold mb-1">Teléfono *</label>
+                                    <input type="tel" id="whatsapp" name="whatsapp" placeholder="+54 9 11 1234-5678"
+                                        required
+                                        class="w-full px-3 py-2 bg-darker border border-gray-600 rounded-lg text-white focus:border-ocre focus:outline-none">
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="zona" class="block text-white font-semibold mb-1">Zona/Ciudad *</label>
+                                    <input type="text" id="zona" name="zona"
+                                        placeholder="Ej: Buenos Aires, Córdoba, etc." required
+                                        class="w-full px-3 py-2 bg-darker border border-gray-600 rounded-lg text-white focus:border-ocre focus:outline-none">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipo-instalacion" class="block text-white font-semibold mb-1">Tipo de
+                                        instalación *</label>
+                                    <select id="tipo-instalacion" name="tipo-instalacion" required
+                                        class="w-full px-3 py-2 bg-darker border border-gray-600 rounded-lg text-white focus:border-ocre focus:outline-none">
+                                        <option value="">Selecciona una opción</option>
+                                        <option value="cortinas-cristal">Cortinas de Cristal</option>
+                                        <option value="mamparas-banos">Mamparas para Baños</option>
+                                        <option value="cerramientos-piscinas">Cerramientos Piscinas</option>
+                                        <option value="multiple">Múltiples servicios</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="medidas" class="block text-white font-semibold mb-1">Medidas
+                                    aproximadas</label>
+                                <textarea id="medidas" name="medidas" rows="2"
+                                    placeholder="Describe las medidas o envíanos una foto"
+                                    class="w-full px-3 py-2 bg-darker border border-gray-600 rounded-lg text-white focus:border-ocre focus:outline-none"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensaje" class="block text-white font-semibold mb-1">Mensaje
+                                    adicional</label>
+                                <textarea id="mensaje" name="mensaje" rows="3"
+                                    placeholder="Cuéntanos más sobre tu proyecto..."
+                                    class="w-full px-3 py-2 bg-darker border border-gray-600 rounded-lg text-white focus:border-ocre focus:outline-none"></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="submit-button w-full bg-ocre hover:bg-ocre-dark text-white font-semibold py-3 px-6 rounded-lg text-base transition-colors">
+                                Enviar Consulta
+                            </button>
+                        </form>
+                    </div>
+                    <div class="contact-info md:pl-8">
+                        <h2 class="section-title text-4xl md:text-5xl font-bold text-ocre mb-4">Información de Contacto
+                        </h2>
+                        <p class="contact-subtitle text-xl text-gray-300 mb-6">Estamos aquí para ayudarte</p>
+                        <div class="space-y-4">
+                            <div class="contact-item flex items-center">
+                                <div class="contact-icon text-2xl mr-4">📞</div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Teléfono</h4>
+                                    <p class="text-gray-300">+54 9 11 1234-5678</p>
+                                </div>
+                            </div>
+                            <div class="contact-item flex items-center">
+                                <div class="contact-icon text-2xl mr-4">📧</div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Email</h4>
+                                    <p class="text-gray-300">info@luminar.com.ar</p>
+                                </div>
+                            </div>
+                            <div class="contact-item flex items-center">
+                                <div class="contact-icon text-2xl mr-4">💬</div>
+                                <div>
+                                    <h4 class="text-white font-semibold">WhatsApp</h4>
+                                    <a href="https://wa.me/5491112345678"
+                                        class="whatsapp-button inline-block bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-lg transition-colors text-sm"
+                                        target="_blank">
+                                        Chatear por WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="contact-item flex items-center">
+                                <div class="contact-icon text-2xl mr-4">🌍</div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Cobertura</h4>
+                                    <p class="text-gray-300">Servicio en toda Argentina</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-darker border-t border-gray-700">
+        <div class="container mx-auto px-4 py-12 text-center">
+            <p class="text-gray-400">&copy; 2025 Luminar. Todos los derechos reservados. | Servicio en toda Argentina
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
