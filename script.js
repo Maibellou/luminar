@@ -8,24 +8,18 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
             const targetTab = button.getAttribute('data-tab');
             
-            // Remover clases activas
             tabButtons.forEach(btn => {
                 btn.classList.remove('active', 'bg-ocre', 'text-white');
                 btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
             });
             
-            tabPanels.forEach(panel => {
-                panel.classList.add('hidden');
-            });
+            tabPanels.forEach(panel => panel.classList.add('hidden'));
             
-            // Activar tab seleccionado
             button.classList.add('active', 'bg-ocre', 'text-white');
             button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
             
             const targetPanel = document.getElementById(targetTab);
-            if (targetPanel) {
-                targetPanel.classList.remove('hidden');
-            }
+            if (targetPanel) targetPanel.classList.remove('hidden');
         });
     });
 
@@ -34,63 +28,36 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
+            const targetSection = document.querySelector(this.getAttribute('href'));
             if (targetSection) {
                 const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: targetSection.offsetTop - headerHeight, behavior: 'smooth' });
             }
         });
     });
 
-    // Función para scroll al contacto
     window.scrollToContact = function() {
         const contactSection = document.querySelector('#contacto');
         if (contactSection) {
             const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = contactSection.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: contactSection.offsetTop - headerHeight, behavior: 'smooth' });
         }
     };
 
-    // Manejo del formulario de contacto
+    // Manejo del formulario con FormSubmit
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Obtener datos del formulario
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Validación básica
-            if (!data.nombre || !data.whatsapp || !data.zona || !data['tipo-instalacion']) {
-                alert('Por favor, completa todos los campos obligatorios.');
-                return;
-            }
-            
-            // Simular envío (aquí puedes integrar con tu backend)
-            console.log('Datos del formulario:', data);
-            
-            // Mostrar mensaje de éxito
-            alert('¡Gracias por tu consulta! Nos pondremos en contacto contigo pronto.');
-            
-            // Limpiar formulario
-            this.reset();
+        contactForm.setAttribute('action', 'https://formsubmit.co/tuemail@dominio.com');
+        contactForm.innerHTML += `
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Nuevo pedido de cotización desde la web">
+        `;
+        contactForm.addEventListener('submit', function() {
+            showNotification("**¡Gracias por tu consulta!**<br>Nos pondremos en contacto a la brevedad.");
         });
     }
 
-    // Navegación móvil (hamburger menu)
+    // Navegación móvil
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('ul');
     const closeMenu = document.querySelector('.close-menu');
@@ -101,156 +68,66 @@ document.addEventListener('DOMContentLoaded', function() {
         closeMenu.classList.remove('hidden');
         hamburger.classList.add('hidden');
     }
-    
     function closeMobileMenu() {
         navMenu.classList.remove('flex', 'flex-col', 'fixed', 'inset-0', 'bg-black', 'p-4', 'space-y-8', 'items-center', 'justify-center', 'z-40');
         navMenu.classList.add('hidden', 'space-x-8');
         closeMenu.classList.add('hidden');
         hamburger.classList.remove('hidden');
     }
-    
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', openMobileMenu);
-    }
-    
-    if (closeMenu) {
-        closeMenu.addEventListener('click', closeMobileMenu);
-    }
-    
-    // Cerrar menú al hacer clic en un enlace
-    const mobileNavLinks = document.querySelectorAll('ul li a');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth < 768) { // Solo en mobile
-                closeMobileMenu();
-            }
-        });
+    if (hamburger && navMenu) hamburger.addEventListener('click', openMobileMenu);
+    if (closeMenu) closeMenu.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('ul li a').forEach(link => {
+        link.addEventListener('click', () => { if (window.innerWidth < 768) closeMobileMenu(); });
     });
 
-    // Animación de scroll para elementos
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    // Animaciones de scroll
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animate-fade-in'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in');
-            }
-        });
-    }, observerOptions);
-
-    // Observar elementos para animación
-    const animateElements = document.querySelectorAll('.benefit-card, .service-content, .about-content');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
+    document.querySelectorAll('.benefit-card, .service-content, .about-content').forEach(el => observer.observe(el));
 
     // Header con efecto de scroll
     let lastScrollTop = 0;
     const header = document.querySelector('header');
-    
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scroll hacia abajo
-            header.classList.add('transform', '-translate-y-full');
-        } else {
-            // Scroll hacia arriba
-            header.classList.remove('transform', '-translate-y-full');
-        }
-        
+        if (scrollTop > lastScrollTop && scrollTop > 100) header.classList.add('transform', '-translate-y-full');
+        else header.classList.remove('transform', '-translate-y-full');
         lastScrollTop = scrollTop;
     });
 
     // Validación de teléfono para WhatsApp
-    const whatsappInput = document.getElementById('whatsapp');
-    if (whatsappInput) {
-        whatsappInput.addEventListener('input', function(e) {
-            // Remover caracteres no numéricos excepto +, espacios y guiones
+    const telefonoInput = document.getElementById('telefono');
+    if (telefonoInput) {
+        telefonoInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/[^\d+\s\-]/g, '');
-            
-            // Asegurar que comience con +54 si no tiene código de país
             if (value && !value.startsWith('+')) {
-                if (value.startsWith('0')) {
-                    value = '+54' + value.substring(1);
-                } else if (value.startsWith('9')) {
-                    value = '+54' + value;
-                } else {
-                    value = '+54' + value;
-                }
+                if (value.startsWith('0')) value = '+54' + value.substring(1);
+                else value = '+54' + value;
             }
-            
             e.target.value = value;
         });
     }
 
-    // Efecto hover en las tarjetas de beneficios
-    const benefitCards = document.querySelectorAll('.benefit-card');
-    benefitCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
+    document.querySelectorAll('.benefit-card').forEach(card => {
+        card.addEventListener('mouseenter', function() { this.style.transform = 'translateY(-5px)'; });
+        card.addEventListener('mouseleave', function() { this.style.transform = 'translateY(0)'; });
     });
 
-    // Lazy loading para imágenes (cuando las agregues)
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { img.src = img.dataset.src; img.classList.remove('lazy'); observer.unobserve(img); } });
         });
+        observer.observe(img);
     });
-
-    images.forEach(img => imageObserver.observe(img));
 });
 
-// Función para formatear números de teléfono
-function formatPhoneNumber(input) {
-    let value = input.value.replace(/\D/g, '');
-    
-    if (value.length > 0) {
-        if (value.startsWith('54')) {
-            value = '+' + value;
-        } else if (value.startsWith('9')) {
-            value = '+54' + value;
-        } else if (value.startsWith('0')) {
-            value = '+54' + value.substring(1);
-        } else {
-            value = '+54' + value;
-        }
-    }
-    
-    input.value = value;
-}
-
-// Función para validar email
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
-
-// Función para mostrar notificaciones
-function showNotification(message, type = 'success') {
+// NOTIFICACIONES FLOTANTES
+function showNotification(message) {
     const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 p-4 rounded-lg text-white z-50 ${
-        type === 'success' ? 'bg-green-600' : 'bg-red-600'
-    }`;
-    notification.textContent = message;
-    
+    notification.className = `fixed top-4 right-4 p-4 rounded-lg text-white border border-green-500 bg-black/80 z-50 shadow-lg text-sm`;
+    notification.innerHTML = `<strong>¡Gracias por tu consulta!</strong><br>Nos pondremos en contacto a la brevedad.`;
     document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-} 
+    setTimeout(() => notification.remove(), 4000);
+}
