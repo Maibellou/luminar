@@ -1,5 +1,5 @@
 // Funcionalidad de tabs para servicios
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Tabs de servicios
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabPanels = document.querySelectorAll('.tab-panel');
@@ -7,17 +7,17 @@ document.addEventListener('DOMContentLoaded', function() {
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const targetTab = button.getAttribute('data-tab');
-            
+
             tabButtons.forEach(btn => {
                 btn.classList.remove('active', 'bg-ocre', 'text-white');
                 btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
             });
-            
+
             tabPanels.forEach(panel => panel.classList.add('hidden'));
-            
+
             button.classList.add('active', 'bg-ocre', 'text-white');
             button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
-            
+
             const targetPanel = document.getElementById(targetTab);
             if (targetPanel) targetPanel.classList.remove('hidden');
         });
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll suave para navegación
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetSection = document.querySelector(this.getAttribute('href'));
             if (targetSection) {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    window.scrollToContact = function() {
+    window.scrollToContact = function () {
         const contactSection = document.querySelector('#contacto');
         if (contactSection) {
             const headerHeight = document.querySelector('header').offsetHeight;
@@ -44,24 +44,93 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Manejo del formulario con FormSubmit
+    // NOTIFICACIONES FLOTANTES CON COLORES
+    function showNotification(message, isError = false) {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 p-4 rounded-lg text-white border ${isError ? 'border-red-500' : 'border-green-500'
+            } ${isError ? 'bg-red-600/80' : 'bg-black/80'} z-50 shadow-lg text-sm`;
+        notification.innerHTML = message;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 4000);
+    }
+
+    // FORMULARIO CON FETCH A FORMSUBMIT
     const contactForm = document.getElementById('contactForm');
+
     if (contactForm) {
-        contactForm.setAttribute('action', 'https://formsubmit.co/tuemail@dominio.com');
-        contactForm.innerHTML += `
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="Nuevo pedido de cotización desde la web">
-        `;
-        contactForm.addEventListener('submit', function() {
-            showNotification("**¡Gracias por tu consulta!**<br>Nos pondremos en contacto a la brevedad.");
+
+        // Crear campos ocultos de FormSubmit
+        const hiddenSubject = document.createElement('input');
+        hiddenSubject.type = 'hidden';
+        hiddenSubject.name = '_subject';
+
+        const hiddenCaptcha = document.createElement('input');
+        hiddenCaptcha.type = 'hidden';
+        hiddenCaptcha.name = '_captcha';
+        hiddenCaptcha.value = 'false';
+
+        const hiddenTemplate = document.createElement('input');
+        hiddenTemplate.type = 'hidden';
+        hiddenTemplate.name = '_template';
+        hiddenTemplate.value = 'table';
+
+        // Honeypot para evitar bots
+        const honeypot = document.createElement('input');
+        honeypot.type = 'text';
+        honeypot.name = '_honey';
+        honeypot.style.display = 'none';
+        honeypot.tabIndex = -1;
+        honeypot.autocomplete = 'off';
+
+        // Agregamos los campos al formulario
+        contactForm.appendChild(hiddenSubject);
+        contactForm.appendChild(hiddenCaptcha);
+        contactForm.appendChild(hiddenTemplate);
+        contactForm.appendChild(honeypot);
+
+        // Interceptar envío
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Evitar envío si honeypot está lleno (bot)
+            if (honeypot.value !== "") {
+                console.warn("Bot detectado, se canceló el envío.");
+                return;
+            }
+
+            // Subject dinámico con nombre del usuario
+            const nombre = document.getElementById('nombre').value;
+            hiddenSubject.value = `Nuevo pedido de cotización desde la web - ${nombre}`;
+
+            const formData = new FormData(contactForm);
+
+            fetch('https://formsubmit.co/72a3e5261b88b9ad512856a1b225fc25', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === 'true' || data.success === true) {
+                        showNotification("<strong>¡Gracias por tu consulta!</strong><br>Nos pondremos en contacto a la brevedad.");
+                        contactForm.reset();
+                    } else {
+                        showNotification("Ocurrió un error al enviar el formulario. Intenta nuevamente.", true);
+                    }
+                })
+                .catch(err => {
+                    showNotification("Error. Intenta nuevamente.", true);
+                    console.error(err);
+                });
         });
     }
+
 
     // Navegación móvil
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('ul');
     const closeMenu = document.querySelector('.close-menu');
-    
+
     function openMobileMenu() {
         navMenu.classList.add('flex', 'flex-col', 'fixed', 'inset-0', 'bg-black', 'p-4', 'space-y-8', 'items-center', 'justify-center', 'z-40');
         navMenu.classList.remove('hidden', 'space-x-8');
@@ -100,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Validación de teléfono para WhatsApp
     const telefonoInput = document.getElementById('telefono');
     if (telefonoInput) {
-        telefonoInput.addEventListener('input', function(e) {
+        telefonoInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/[^\d+\s\-]/g, '');
             if (value && !value.startsWith('+')) {
                 if (value.startsWith('0')) value = '+54' + value.substring(1);
@@ -111,8 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.querySelectorAll('.benefit-card').forEach(card => {
-        card.addEventListener('mouseenter', function() { this.style.transform = 'translateY(-5px)'; });
-        card.addEventListener('mouseleave', function() { this.style.transform = 'translateY(0)'; });
+        card.addEventListener('mouseenter', function () { this.style.transform = 'translateY(-5px)'; });
+        card.addEventListener('mouseleave', function () { this.style.transform = 'translateY(0)'; });
     });
 
     document.querySelectorAll('img[data-src]').forEach(img => {
@@ -123,11 +192,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// NOTIFICACIONES FLOTANTES
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 p-4 rounded-lg text-white border border-green-500 bg-black/80 z-50 shadow-lg text-sm`;
-    notification.innerHTML = `<strong>¡Gracias por tu consulta!</strong><br>Nos pondremos en contacto a la brevedad.`;
-    document.body.appendChild(notification);
-    setTimeout(() => notification.remove(), 4000);
-}
