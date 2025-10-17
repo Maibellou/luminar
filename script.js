@@ -192,3 +192,38 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Slider de beneficios
+const benefitsSwiper = new Swiper('.benefits-swiper', {
+    loop: true,
+    spaceBetween: 20,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,   // Mobile
+        },
+        768: {
+            slidesPerView: 2,   // Tablet (opcional, podés cambiar a 1 o 3)
+        },
+        1024: {
+            slidesPerView: 3,   // Desktop
+        }
+    }
+});
+
+
+// Inicializar al cargar
+initBenefitsSwiper();
+
+// Recalcular al redimensionar
+window.addEventListener('resize', initBenefitsSwiper);

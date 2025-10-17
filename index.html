@@ -12,6 +12,8 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -219,49 +221,84 @@
             <div class="container mx-auto px-4">
                 <h2 class="section-title text-4xl md:text-5xl font-bold text-ocre text-center mb-16">¿Por qué elegir
                     nuestras cortinas de cristal?</h2>
-                <div class="benefits-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div
-                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
-                        <div class="benefit-icon text-4xl mb-4">👷</div>
-                        <h3 class="text-xl font-bold text-ocre mb-4">Instalación Profesional</h3>
-                        <p class="text-gray-300">Equipo técnico especializado con años de experiencia en el sector.</p>
+                <!-- Swiper -->
+                <div class="swiper benefits-swiper">
+                    <div class="swiper-wrapper py-6">
+                        <!-- Card 1 -->
+                        <div class="swiper-slide">
+                            <div
+                                class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                                <div class="benefit-icon text-4xl mb-4">👷</div>
+                                <h3 class="text-xl font-bold text-ocre mb-4">Instalación Profesional</h3>
+                                <p class="text-gray-300">Equipo técnico especializado con años de experiencia en el
+                                    sector.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="swiper-slide">
+                            <div
+                                class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                                <div class="benefit-icon text-4xl mb-4">🛡️</div>
+                                <h3 class="text-xl font-bold text-ocre mb-4">Garantía Extendida</h3>
+                                <p class="text-gray-300">Respaldamos nuestro trabajo con garantías completas en
+                                    materiales e instalación.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="swiper-slide">
+                            <div
+                                class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                                <div class="benefit-icon text-4xl mb-4">💬</div>
+                                <h3 class="text-xl font-bold text-ocre mb-4">Asesoramiento Personalizado</h3>
+                                <p class="text-gray-300">Te acompañamos en cada paso, desde el diseño hasta la
+                                    instalación final.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="swiper-slide">
+                            <div
+                                class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                                <div class="benefit-icon text-4xl mb-4">🎨</div>
+                                <h3 class="text-xl font-bold text-ocre mb-4">Diseños a Medida</h3>
+                                <p class="text-gray-300">Cada proyecto es único, adaptamos las soluciones a tus
+                                    necesidades
+                                    específicas.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="swiper-slide">
+                            <div
+                                class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                                <div class="benefit-icon text-4xl mb-4">✨</div>
+                                <h3 class="text-xl font-bold text-ocre mb-4">Estética Moderna</h3>
+                                <p class="text-gray-300">Diseños contemporáneos que se integran perfectamente con
+                                    cualquier
+                                    estilo.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="swiper-slide">
+                            <div
+                                class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
+                                <div class="benefit-icon text-4xl mb-4">⚡</div>
+                                <h3 class="text-xl font-bold text-ocre mb-4">Fácil Instalación</h3>
+                                <p class="text-gray-300">Proceso rápido y eficiente, sin interrumpir tu rutina diaria.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div
-                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
-                        <div class="benefit-icon text-4xl mb-4">🛡️</div>
-                        <h3 class="text-xl font-bold text-ocre mb-4">Garantía Extendida</h3>
-                        <p class="text-gray-300">Respaldamos nuestro trabajo con garantías completas en materiales e
-                            instalación.</p>
-                    </div>
-                    <div
-                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
-                        <div class="benefit-icon text-4xl mb-4">💬</div>
-                        <h3 class="text-xl font-bold text-ocre mb-4">Asesoramiento Personalizado</h3>
-                        <p class="text-gray-300">Te acompañamos en cada paso, desde el diseño hasta la instalación
-                            final.</p>
-                    </div>
-                    <div
-                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
-                        <div class="benefit-icon text-4xl mb-4">🎨</div>
-                        <h3 class="text-xl font-bold text-ocre mb-4">Diseños a Medida</h3>
-                        <p class="text-gray-300">Cada proyecto es único, adaptamos las soluciones a tus necesidades
-                            específicas.</p>
-                    </div>
-                    <div
-                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
-                        <div class="benefit-icon text-4xl mb-4">✨</div>
-                        <h3 class="text-xl font-bold text-ocre mb-4">Estética Moderna</h3>
-                        <p class="text-gray-300">Diseños contemporáneos que se integran perfectamente con cualquier
-                            estilo.</p>
-                    </div>
-                    <div
-                        class="benefit-card bg-darker p-8 rounded-lg border border-gray-700 hover:border-ocre/50 transition-colors">
-                        <div class="benefit-icon text-4xl mb-4">⚡</div>
-                        <h3 class="text-xl font-bold text-ocre mb-4">Fácil Instalación</h3>
-                        <p class="text-gray-300">Proceso rápido y eficiente, sin interrumpir tu rutina diaria.</p>
-                    </div>
+                    <!-- Flechas -->
+                    <div class="swiper-button-next text-ocre hidden md:block"></div>
+                    <div class="swiper-button-prev text-ocre hidden md:block"></div>
+
+                    <!-- Paginación (opcional) -->
+                    <div class="swiper-pagination"></div>
                 </div>
-            </div>
         </section>
 
         <!-- 4. Quiénes Somos -->
@@ -372,32 +409,30 @@
                         <p class="contact-subtitle text-xl text-gray-300 mb-6">Estamos aquí para ayudarte</p>
                         <div class="space-y-4">
                             <div class="contact-item flex items-center">
-                                <div class="contact-icon text-2xl mr-4">📞</div>
+                                <div class="contact-icon w-8 h-8 mr-4">
+                                    <img src="src/icon_telefono.svg" alt="Teléfono"
+                                        class="w-full h-full object-contain">
+                                </div>
                                 <div>
                                     <h4 class="text-white font-semibold">Teléfono</h4>
-                                    <p class="text-gray-300">+54 9 11 1234-5678</p>
+                                    <p class="text-gray-300">11 6589 5232</p>
                                 </div>
                             </div>
                             <div class="contact-item flex items-center">
-                                <div class="contact-icon text-2xl mr-4">📧</div>
+                                <div class="contact-icon w-8 h-8 mr-4">
+                                    <img src="src/icon_email.svg" alt="Email" class="w-full h-full object-contain">
+                                </div>
                                 <div>
                                     <h4 class="text-white font-semibold">Email</h4>
-                                    <p class="text-gray-300">info@luminar.com.ar</p>
+                                    <p class="text-gray-300">luminarcristales@gmail.com</p>
                                 </div>
                             </div>
+
                             <div class="contact-item flex items-center">
-                                <div class="contact-icon text-2xl mr-4">💬</div>
-                                <div>
-                                    <h4 class="text-white font-semibold">WhatsApp</h4>
-                                    <a href="https://wa.me/5491112345678"
-                                        class="whatsapp-button inline-block bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-lg transition-colors text-sm"
-                                        target="_blank">
-                                        Chatear por WhatsApp
-                                    </a>
+                                <div class="contact-icon w-8 h-8 mr-4">
+                                    <img src="src/icon_internet.svg" alt="Cobertura"
+                                        class="w-full h-full object-contain">
                                 </div>
-                            </div>
-                            <div class="contact-item flex items-center">
-                                <div class="contact-icon text-2xl mr-4">🌍</div>
                                 <div>
                                     <h4 class="text-white font-semibold">Cobertura</h4>
                                     <p class="text-gray-300">Servicio en toda Argentina</p>
@@ -418,8 +453,11 @@
         </div>
     </footer>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <!-- JavaScript -->
     <script src="script.js"></script>
+
 </body>
 
 </html>
